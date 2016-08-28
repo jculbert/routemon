@@ -1,0 +1,3 @@
+43.865926, -79.289759 Markville_Mall
+43.380903, -80.496452 Huron_Kitchener
+43.641081, -79.389493 Rogers_Centre
