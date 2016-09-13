@@ -19,3 +19,16 @@ segments varchar(1000),
 destination varchar(200),
 primary key (route_num)
 );
+
+drop table if exists RouteInfo;
+
+create table RouteInfo
+(
+route_info_num int auto_increment,
+route_info varchar (1000),
+route_num int,
+date_time timestamp DEFAULT CURRENT_TIMESTAMP,
+primary key (route_info_num)
+);
+
+

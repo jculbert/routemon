@@ -37,6 +37,7 @@ class RouteQuery:
         )
 
         r = requests.get(url=url,params=params).json()
+
         return r
 
     def response_Parse(self, response):

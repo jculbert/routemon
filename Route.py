@@ -4,5 +4,3 @@ class Route:
         self.segments = segments
         self.destination = destination
 
-
-
