@@ -20,7 +20,7 @@ route1 = Route(segments,destination )
 print(route1)
 
 
-apikey = 'AIzaSyDuiSPpsDNUl79MvqjbQnd32MPQ2nYhfds'
+#apikey =
 
 
 
