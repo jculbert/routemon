@@ -8,18 +8,12 @@ from routeQuery import RouteQuery
 cnx = mysql.connector.connect(user='routemon', password='blart', database='RouteMon')
 cursor = cnx.cursor()
 
-apikey = 'AIzaSyDuiSPpsDNUl79MvqjbQnd32MPQ2nYhfds'
+#apikey = 
 
 query = 'select * from Routes'
 
 cursor.execute(query)
 
-#for (route_num, user_name, route_name, segments, destination) in cursor:
-    #print route_name
-    #print segments
-    #print destination
-    #segments_list = json.loads(segments)
-    #print segments_list
 
 for (route_num, user_name, route_name, segments, destination) in cursor:
     segments_list = json.loads(segments)
