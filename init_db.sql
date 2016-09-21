@@ -27,6 +27,7 @@ create table RouteInfo
 route_info_num int auto_increment,
 route_info varchar (1000),
 route_num int,
+route_info_response varchar (1000),
 date_time timestamp DEFAULT CURRENT_TIMESTAMP,
 primary key (route_info_num)
 );

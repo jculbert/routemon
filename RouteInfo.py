@@ -12,3 +12,6 @@ class RouteInfo:
 
     def to_JSON(self):
         return json.dumps(self, default=lambda o: o.__dict__)
+
+    def addResponse(self, response):
+        self.response = response
