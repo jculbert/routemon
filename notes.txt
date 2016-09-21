@@ -2,3 +2,18 @@ Google API Documentation
 https://developers.google.com/maps/documentation/directions/start
 
 https://maps.googleapis.com/maps/api/directions/json?parameters
+
+iOS App
+
+Configuration
+-user name
+
+-Main display shows routes in a table
+-tapping a route shows route details
+    -show Route data
+    -show most recent RouteInfo
+    -enable monitoring of a route
+
+To provide data while driving
+-Reads routes on startup
+-Upon startup and switch to foreground, outputs state (text to speech) for any routes with monitoring enabled
