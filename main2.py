@@ -3,7 +3,16 @@ from segment    import Segment
 from Route import Route
 import json
 from json import JSONEncoder
+import time
+import datetime
+from datetime import timedelta
 
+
+#date_time = time.strftime('%Y-%m-%d %H:%M:%S')
+
+
+#now = datetime.datetime.now()
+#//now_plus_10 = now + datetime.timedelta(minutes = 10)
 
 segments = []
 
@@ -20,13 +29,13 @@ route1 = Route(segments,destination )
 print(route1)
 
 
-#apikey =
+apikey ='AIzaSyDuiSPpsDNUl79MvqjbQnd32MPQ2nYhfds'
 
 
 
 routeQuery= RouteQuery(route1,apikey)
 
-routeInfo=routeQuery.query()
+routeInfo =routeQuery.query()
 print (routeInfo.to_JSON())
 
 
