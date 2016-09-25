@@ -22,7 +22,6 @@ for route in routes:
         print 'Route Queried'
     else:
         print "Timestamp in Past"
-        break
 
 
 

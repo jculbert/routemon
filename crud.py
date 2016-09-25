@@ -32,7 +32,16 @@ class Crud():
         cnx.close()
         return routes
 
-    def get_routeinfos(self, user_name=None):
+    def get_routes_json(self, user_name=None):
+
+        routes_list = []
+        routes = self.get_routes(user_name=user_name)
+        for route in routes:
+            routes_list.append(route.to_dict())
+
+        return json.dumps(routes_list)
+
+    def get_routeinfo_json(self, user_name=None):
         cnx =  mysql.connector.connect(user='routemon', password=self.password, database=self.database)
         cursor = cnx.cursor()
 
@@ -43,17 +52,18 @@ class Crud():
         cursor.execute(query)
 
         infos = []
-        for (route_info_num, route_info, route_num, date_time) in cursor:
+        for (route_info_num, route_num, segment_info, summary, date_time) in cursor:
             row = {}
             row["route_info_num"] = route_info_num
-            row["route_info"] = json.loads(route_info)
             row["route_num"] = route_num
-            row["date_time"] = date_time
+            row["segment_info"] = json.loads(segment_info)
+            row["summary"] = summary
+            row["date_time"] = str(date_time)
             infos.append(row)
 
         cursor.close()
         cnx.close()
-        return infos
+        return json.dumps(infos)
 
     def add_routeInfo(self, route_info):
         cnx =  mysql.connector.connect(user='routemon', password=self.password, database=self.database)
