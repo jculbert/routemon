@@ -23,12 +23,14 @@ from crud import Crud
 
 def get_routes(user_name=None):
     crud = Crud("blart")
-    return crud.get_routes_json(user_name=user_name)
+    routes = crud.get_routes_serializable(user_name=user_name)
+    return json.dumps({"routes": routes})
 
 def get_routeinfo(user_name=None):
 
     crud = Crud("blart")
-    return crud.get_routeinfo_json(user_name=user_name)
+    routeinfo = crud.get_routeinfo_serializable(user_name=user_name)
+    return json.dumps({"routeinfo": routeinfo})
 
 # Iterate over the request parameter key value pairs
 arguments = cgi.FieldStorage()
