@@ -15,13 +15,13 @@ now = datetime.datetime.now()
 routes = crud.get_routes()
 for route in routes:
 
-    if route.query_time > now :
-        print "Valid Future Timestamp"
+#    if route.query_time > now :
+#        print "Valid Future Timestamp"
         routeInfo = routeQuery.query(route)
         crud.add_routeInfo(routeInfo)
         print 'Route Queried'
-    else:
-        print "Timestamp in Past"
+#    else:
+#        print "Timestamp in Past"
 
 
 

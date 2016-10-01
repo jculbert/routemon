@@ -25,10 +25,14 @@ class RouteQuery:
             duration, duration_in_traffic = self.response_Parse(response)
 
             name = self.createName(p1.name, p2.name)
-            summary += self.segmentSummary(duration, duration_in_traffic, name)
+            segSummary = self.segmentSummary(duration, duration_in_traffic, name)
+            if summary == '':
+                summary = segSummary
+            else:
+                summary += ", " + segSummary
             routeInfo.add_segment( SegmentInfo(name, duration, duration_in_traffic) )
 
-        summary += self.overallSummary()
+        summary = self.overallSummary() + ", " + summary
         routeInfo.add_summary(summary)
 
         return routeInfo
@@ -72,7 +76,7 @@ class RouteQuery:
         percentSlowdown = valduration_in_traffic/valduration
 
         if (percentSlowdown > 0.9):
-            summary = ("Segment %s is slower by %s minutes. " %((name), (slowdown)))
+            summary = ("%s %s minutes" %((name), (slowdown)))
 
         else:
             summary = ''
@@ -83,7 +87,7 @@ class RouteQuery:
 
         routeSlowdown = (self.total_duration_in_traffic-self.total_duration)//60
 
-        summary = "Overall your route is slower by %s minutes. " %(routeSlowdown)
+        summary = "%s minutes. " %(routeSlowdown)
 
         return summary
 

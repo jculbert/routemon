@@ -11,6 +11,7 @@ class Crud():
 
     def get_routes(self, user_name=None):
         cnx =  mysql.connector.connect(user='routemon', password=self.password, database=self.database)
+        cnx2 =  mysql.connector.connect(user='routemon', password=self.password, database=self.database)
         cursor = cnx.cursor()
 
         query = "SELECT * from Routes"
@@ -21,15 +22,28 @@ class Crud():
 
         routes = []
         for (route_num, user_name, route_name, points, query_time) in cursor:
+
+            # Get the summary from the newest route_info for the route
+            summary = "No summary"
+            query = "SELECT summary from RouteInfo where route_num=" + str(route_num) + " order by date_time desc";
+            cursor2 = cnx2.cursor()
+            cursor2.execute(query)
+            row = cursor2.fetchone()
+            if row:
+                summary = row[0]
+            cursor2.fetchall() # Need to do this before calling close for some reason
+            cursor2.close()
+
             points_list = json.loads(points)
             points = []
             for p in points_list:
                 points.append(Point(name=p['name'], location=p['location']))
-            route = Route(route_num=route_num, user_name=user_name, route_name=route_name, points=points, query_time=query_time)
+            route = Route(route_num=route_num, user_name=user_name, route_name=route_name, points=points, query_time=query_time, summary=summary)
             routes.append(route)
 
         cursor.close()
         cnx.close()
+        cnx2.close()
         return routes
 
     def get_routes_serializable(self, user_name=None):
