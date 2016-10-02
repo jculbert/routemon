@@ -27,9 +27,9 @@ h401_h404_loc = "43.767985,-79.364130"
 name = 'To home all 401'
 points = [
     {"name": "Work", "location": work_loc},
-    {"name": "401 and 404", "location": h401_h404_loc},
-    {"name": "401 and 407", "location": h401_h407_loc},
-    {"name": "401 and 6", "location": h401_h6_loc},
+    {"name": "401", "location": h401_h404_loc},
+    {"name": "407", "location": h401_h407_loc},
+    {"name": "6", "location": h401_h6_loc},
     {"name": "Home", "location": home_loc}
 ]
 data = ('jeff', name, json.dumps(points), now_plus_10)
@@ -39,9 +39,9 @@ cnx.commit()
 name = 'To work all 401'
 points = [
     {"name": "Home", "location": home_loc},
-    {"name": "401 and 6", "location": h401_h6_loc},
-    {"name": "401 and 407", "location": h401_h407_loc},
-    {"name": "401 and 404", "location": h401_h404_loc},
+    {"name": "6", "location": h401_h6_loc},
+    {"name": "407", "location": h401_h407_loc},
+    {"name": "404", "location": h401_h404_loc},
     {"name": "Work", "location": work_loc}
 ]
 data = ('jeff', name, json.dumps(points), now_plus_10)

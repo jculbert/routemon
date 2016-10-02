@@ -72,12 +72,13 @@ class RouteQuery:
         valduration_in_traffic = duration_in_traffic['value']
         self.total_duration += valduration
         self.total_duration_in_traffic += valduration_in_traffic
-        slowdown = (valduration_in_traffic-valduration)//60
-        percentSlowdown = valduration_in_traffic/valduration
+        if valduration_in_traffic > valduration:
+            slowdown = (valduration_in_traffic - valduration) // 60
+        else:
+            slowdown = 0
 
-        if (percentSlowdown > 0.9):
+        if (slowdown > 2):
             summary = ("%s %s minutes" %((name), (slowdown)))
-
         else:
             summary = ''
 
@@ -85,9 +86,9 @@ class RouteQuery:
 
     def overallSummary(self): #returns string summarizing total slowdown of route
 
-        routeSlowdown = (self.total_duration_in_traffic-self.total_duration)//60
+        routeSlowdown = (self.total_duration_in_traffic - self.total_duration) // 60
 
-        summary = "%s minutes. " %(routeSlowdown)
+        summary = "%s minutes" %(routeSlowdown)
 
         return summary
 

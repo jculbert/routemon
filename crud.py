@@ -31,7 +31,7 @@ class Crud():
             row = cursor2.fetchone()
             if row:
                 summary = row[0]
-            cursor2.fetchall() # Need to do this before calling close for some reason
+                rows = cursor2.fetchall() # Need to do this before calling close for some reason
             cursor2.close()
 
             points_list = json.loads(points)
