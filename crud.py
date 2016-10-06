@@ -91,4 +91,14 @@ class Crud():
         cursor.close()
         cnx.close()
 
+    def purge_routeinfo(self, older_than_date_str):
+        cnx =  mysql.connector.connect(user='routemon', password=self.password, database=self.database)
+        cursor = cnx.cursor()
+
+        cursor.execute("delete from RouteInfo where date_time < '" + older_than_date_str + "'")
+        cnx.commit()
+
+        cursor.close()
+        cnx.close()
+
 
