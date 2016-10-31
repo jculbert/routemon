@@ -24,7 +24,7 @@ from crud import Crud
 def get_routes(user_name=None):
     crud = Crud("blart")
     routes = crud.get_routes_serializable(user_name=user_name)
-    return json.dumps({"routes": routes})
+    return json.dumps(routes)
 
 def get_routeinfo(user_name=None):
 
@@ -33,23 +33,11 @@ def get_routeinfo(user_name=None):
     return json.dumps({"routeinfo": routeinfo})
 
 # Iterate over the request parameter key value pairs
-arguments = cgi.FieldStorage()
-func = None
 user_name = None
-for key in arguments.keys():
-    if key == "func":
-        func = arguments[key].value
-    elif key == "user_name":
-        user_name = arguments[key].value
+response = get_routes(user_name)
 
-if func == "routes":
-    response = get_routes(user_name)
-elif func == "routeinfo":
-    response = get_routeinfo(user_name)
-else:
-    response = {"error": "Unrecognized function"}
-
-print "Content-type: application/json\n\n"
+print "Content-type: application/json"
+print "Access-Control-Allow-Origin: http://localhost:63342\n"
 print response
 
 
